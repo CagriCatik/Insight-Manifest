@@ -1,0 +1,40 @@
+name: Build GUI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-gui:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  # Adjust as needed within your allowed range
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python -
+          export PATH="$HOME/.local/bin:$PATH"
+
+      - name: Install dependencies with Poetry
+        run: poetry install
+
+      - name: Install xvfb and timeout
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb timeout
+
+      - name: Run GUI Build Test
+        run: |
+          # Use xvfb-run to simulate a display and timeout to stop the GUI after 10 seconds.
+          xvfb-run -a timeout 10 poetry run python gui/main.py

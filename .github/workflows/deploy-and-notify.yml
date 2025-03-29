@@ -1,0 +1,45 @@
+# .github/workflows/deploy-and-notify.yml
+name: Deploy and Notify
+
+on:
+  workflow_run:
+    workflows: ["Build LaTeX Report"]  # Must match the name of the second workflow exactly
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies with Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python -
+          poetry install
+
+      - name: Build MkDocs site
+        run: poetry run mkdocs build
+
+      - name: Deploy MkDocs site to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+
+      - name: Run Coverage Check and Send Email Notification
+        if: ${{ success() }}
+        run: poetry run python notify.py
+        env:
+          EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+          EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_RECIPIENT: ${{ secrets.EMAIL_RECIPIENT }}

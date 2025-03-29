@@ -1,0 +1,16 @@
+# config.yaml
+excel_file: "../data/test_coverage.xlsx"
+sheet_name: "Sheet1"
+heatmap_output: "../docs/images/test_coverage.png"
+latex_template: "../templates/report_template.tex"
+report_output_dir: "../report"
+report_filename: "report.tex"
+
+email:
+  smtp_server: "smtp.example.com"
+  smtp_port: 587
+  username: "your_email@example.com"
+  password: "your_email_password"
+  recipients:
+    - "recipient1@example.com"
+    - "recipient2@example.com"

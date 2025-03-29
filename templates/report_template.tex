@@ -1,0 +1,25 @@
+% templates/report_template.tex
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\title{{ title }}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section*{Summary Statistics}
+{{ summary }}
+
+\section*{Test Coverage Heatmap}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{{ image_path }}
+    \caption{Test Coverage Matrix}
+\end{figure}
+
+\section*{Full Data Table}
+{{ inline_table }}
+
+\end{document}

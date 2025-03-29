@@ -1,0 +1,49 @@
+% templates/report_template.tex
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\titleTest Coverage Report
+\date{\today}
+\begin{document}
+\maketitle
+
+\section*{Summary Statistics}
+\begin{tabular}{lrrr}
+\toprule
+{} &  Module1 &  Module2 &    Module3 \\
+\midrule
+count &      3.0 &      3.0 &   3.000000 \\
+mean  &     85.0 &     80.0 &  80.000000 \\
+std   &      5.0 &     10.0 &  13.228757 \\
+min   &     80.0 &     70.0 &  70.000000 \\
+25\%   &     82.5 &     75.0 &  72.500000 \\
+50\%   &     85.0 &     80.0 &  75.000000 \\
+75\%   &     87.5 &     85.0 &  85.000000 \\
+max   &     90.0 &     90.0 &  95.000000 \\
+\bottomrule
+\end{tabular}
+
+
+\section*{Test Coverage Heatmap}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]C:\Users\mccat\Desktop\Insight-Manifest\docs\images\test_coverage.png
+    \caption{Test Coverage Matrix}
+\end{figure}
+
+\section*{Full Data Table}
+\begin{tabular}{lrrr}
+\toprule
+{} &  Module1 &  Module2 &  Module3 \\
+Test Case &          &          &          \\
+\midrule
+Test1     &       90 &       80 &       70 \\
+Test2     &       85 &       90 &       75 \\
+Test3     &       80 &       70 &       95 \\
+\bottomrule
+\end{tabular}
+
+
+\end{document}

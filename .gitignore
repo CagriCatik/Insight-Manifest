@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.env/
+.venv/
+venv/
+ENV/
+env/
+
+# Poetry
+poetry.lock
+
+# Pytest cache
+.cache/
+
+# MkDocs generated site
+site/
+
+# Report build artifacts
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.synctex.gz
+report/*.pdf
+
+# Log files
+*.log
+project.log
+
+# Secrets file (DO NOT commit sensitive info)
+.secrets
+
+# OS-specific files
+.DS_Store
+Thumbs.db
